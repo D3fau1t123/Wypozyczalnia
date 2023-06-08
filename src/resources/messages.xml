@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>xml example</comment>
+    <entry key="error.incorrect.input">Podano niepoprawne dane. Spróbuj ponownie</entry>
+    <entry key="message.menu"> Wypożyczalnia, wybierz akcję.*Rejestracja klienta (R).*Dodaj przedmiot (D).*Wypożycz przedmiot (W).*Zwróć przedmiot (Z).*Lista klientów (K).*Lista dostępnych produktów (P).*Aktywne wypożyczenia (A).*Wyjście (Q).</entry>
+    <entry key="message.bye">Do zobaczenia</entry>
+
+    <entry key="message.rentals.title">* Lista aktywnych wypożyczeń *</entry>
+    <entry key="message.users.title">* Lista klientów *</entry>
+    <entry key="message.products.title">* Lista przedmiotów *</entry>
+
+    <entry key="message.add.user.welcome">* Wybrano opcję: Rejestracja klienta *</entry>
+    <entry key="message.add.user.get.id">* Podaj ID: </entry>
+    <entry key="message.add.user.get.name">* Podaj imię i nazwisko: </entry>
+
+    <entry key="message.add.product.welcome">* Wybrano opcję: Dodawanie produktu do listy *</entry>
+    <entry key="message.add.product.get.id">* Podaj ID: </entry>
+    <entry key="message.add.product.get.name">* Podaj nazwę przedmiotu: </entry>
+    <entry key="message.add.product.get.price">* Podaj cenę za dzień wynajmu: </entry>
+
+    <entry key="message.add.rental.welcome">* Wybrano opcję: Wypożyczenie *</entry>
+    <entry key="message.add.rental.return">* Wybrano opcję: Zwrot *</entry>
+    <entry key="message.add.rental.get.product">* Podaj ID przedmiotu: </entry>
+    <entry key="message.add.rental.get.client">* Podaj ID klienta: </entry>
+    <entry key="message.add.rental.get.date">* Podaj datę wypożyczenia (format YYYY-MM-DD): </entry>
+
+</properties>
