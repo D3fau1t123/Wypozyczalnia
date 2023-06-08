@@ -1,8 +1,6 @@
 package interfaces;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 public interface RentalInterface extends BasicInterface{
 
