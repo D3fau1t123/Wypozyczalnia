@@ -10,6 +10,7 @@ import models.Rental;
 import java.time.LocalDate;
 import java.util.Map;
 
+// klasa z metodą pomocniczą dodającą przykładowe dane
 public class InitApp {
 
     public static void prepareData(

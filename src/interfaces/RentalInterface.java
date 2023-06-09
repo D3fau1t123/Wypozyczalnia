@@ -2,9 +2,11 @@ package interfaces;
 
 import java.time.LocalDate;
 
-public interface RentalInterface extends BasicInterface{
+// interfejs opisujący metody służące do zarzadzania wypożyczeniami
+public interface RentalInterface extends BasicInterface {
 
-    static String getId(String productId, String userId, LocalDate date){
+    // metoda statyczna generująca id wypożyczenia na podstawie id produktu, klienta oraz daty
+    static String getId(String productId, String userId, LocalDate date) {
         return "WYP/" +
                 productId +
                 "/" +
@@ -14,8 +16,12 @@ public interface RentalInterface extends BasicInterface{
                 date;
     }
 
+    // deklaracja metody ustawiającej id wypożyczenia na postawie id produktu, klienta oraz daty
     RentalInterface setId(String productId, String userId, LocalDate date);
 
+    // pozostałe gettery/settery - pobieranie i ustawianie dat wypożyczenia i zwrotu,
+    // danych produktu i klienta, pobieranie aktualnego kosztu wypożyczenia i czasu,
+    // na jaki przedmiot został wypożyczony (w dniach)
     LocalDate getRentDate();
     LocalDate getReturnDate();
 
@@ -29,6 +35,8 @@ public interface RentalInterface extends BasicInterface{
 
     RentalInterface setRentDate(LocalDate rentDate);
     RentalInterface setReturnDate(LocalDate returnDate);
+
     RentalInterface setProduct(ProductInterface product);
+
     RentalInterface setRentedTo(UserInterface user);
 }
