@@ -106,28 +106,38 @@ public class RunController {
             Map<String, ProductInterface> products,
             Map<String, RentalInterface> rentals
     ) {
+        // pobranie mapy dostępnych produktów na podstawie wszystkich produktów
         Map<String, ProductInterface> availableProducts = getAvailableProducts(products, getActiveRentals(rentals));
 
+        // wyświetlanie wiadomości powitalnej dla dodawania wynajmu
         view.printLine(view.getProperty("message.add.rental.welcome") + "\n");
 
         Scanner input = new Scanner(System.in);
+
+        // pobieranie listy użytkowników i zaktualizowanie widoku
         String[] userList = view.getMap(view.getProperty("message.users.title"), users);
         updateView(userList);
 
+        // pobranie id klienta
         view.printLine(view.getProperty("message.add.rental.get.client"));
         String clientId = input.nextLine().toUpperCase();
 
+        // pobranie listy dostępnych produktów i zaktualizowanie widoku
         String[] productList = view.getMap(view.getProperty("message.products.title"), availableProducts);
         updateView(productList);
 
+        // prośba o podanie id produktu
         view.printLine(view.getProperty("message.add.rental.get.product"));
         String productId = input.nextLine().toUpperCase();
 
         if (availableProducts.containsKey(productId) && users.containsKey(clientId)) {
+            // pobranie bieżącej daty wynajmu
             LocalDate rentDate = LocalDate.now();
+            // pobranie obiektu produktu i klienta na podstawie id
             ProductInterface product = availableProducts.get(productId);
             UserInterface client = users.get(clientId);
 
+            // tworzenie nowego obiektu wynajmu i dodawanie go do mapy wynajmów
             RentalInterface rental = new Rental()
                     .setId(product.getId(), client.getId(), rentDate)
                     .setProduct(product)
@@ -144,29 +154,37 @@ public class RunController {
             Map<String, ProductInterface> products,
             Map<String, RentalInterface> rentals
     ) {
+        // wyświetlanie wiadomości rozpoczynających metodę
         view.printLine(view.getProperty("message.add.rental.return") + "\n");
 
+        // pobranie listy użytkowników
         String[] userList = view.getMap(view.getProperty("message.users.title"), users);
         updateView(userList);
 
+        // pobranie id klienta
         Scanner input = new Scanner(System.in);
         view.printLine(view.getProperty("message.add.rental.get.client"));
         String clientId = input.nextLine().toUpperCase();
 
+        // pobranie listy wynajmów dla określonego klienta
         String[] rentalList = view.getMap(view.getProperty("message.products.title"), getUserRentals(clientId));
         updateView(rentalList);
 
+        // pobranie id produktu
         view.printLine(view.getProperty("message.add.rental.get.product"));
         String productId = input.nextLine().toUpperCase();
 
+        // pobranie daty zwrotu
         view.printLine(view.getProperty("message.add.rental.get.date"));
         String rentDateString = input.nextLine();
         LocalDate rentDate = LocalDate.parse(rentDateString, DateTimeFormatter.ISO_LOCAL_DATE);
 
+        // sprawdzenie czy podany produkt i klient istnieją
         if (products.containsKey(productId) && users.containsKey(clientId)) {
             LocalDate returnDate = LocalDate.now();
             String rentalId = RentalInterface.getId(productId, clientId, rentDate);
 
+            // zaktualizowanie daty zwrotu i wynajmu
             if (rentals.containsKey(rentalId)) {
                 RentalInterface rental = rentals.get(rentalId);
                 rental.setReturnDate(returnDate);
@@ -182,16 +200,21 @@ public class RunController {
 
     private void addProduct(Map<String, ProductInterface> products) {
         view.printLine(view.getProperty("message.add.product.welcome") + "\n");
+        // pobranie id produktu
         Scanner input = new Scanner(System.in);
         view.printLine(view.getProperty("message.add.product.get.id"));
         String id = input.nextLine().toUpperCase();
+
+        // pobranie nazwy produktu
         view.printLine(view.getProperty("message.add.product.get.name"));
         String name = input.nextLine();
 
         try {
+            // pobranie ceny produktu
             view.printLine(view.getProperty("message.add.product.get.price"));
             double price = input.nextDouble();
 
+            // tworzenie nowego obiektu i produktu i dodanie go do mapy produktów
             ProductInterface product = new Product().setId(id).setName(name).setPrice(price);
             products.put(product.getId(), product);
 
@@ -258,7 +281,7 @@ public class RunController {
             UserInterface client = users.get(clientId);
             // pętla for przechodząca przez kolekcję (Set) kluczy z kolekcji wypożyczeń
             // sprawdzamy całą kolekcję w celu wyświetlenia historii wypożyczeń
-            // jeśli chcielibyśmy wyśweietlić tylko aktualnie wypożyczone przedmioty,
+            // jeśli chcielibyśmy wyświetlić tylko aktualnie wypożyczone przedmioty,
             // należałoby pobrać aktualne wypożyczenia za pomocą akcji getActiveRentals
             for (String rentalKey: rentals.keySet()) {
                 // jeśli przedmiot został wypożyczony klientowi, dodajemy wpis do kolekcji wynikowej

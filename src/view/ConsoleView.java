@@ -39,7 +39,7 @@ public class ConsoleView {
     }
 
 
-    // motoda pomocnicza do wypisywania danych
+    // metoda pomocnicza do wypisywania danych
     public void print(String[] data) {
         System.out.println("-------------------------------");
         for (int i = 0; i < data.length; i++) {
@@ -47,7 +47,7 @@ public class ConsoleView {
         }
     }
 
-    // motoda pomocnicza do wypisywania komunikatów
+    // metoda pomocnicza do wypisywania komunikatów
     public void printLine(String line) {
         System.out.print(line);
     }
@@ -56,7 +56,7 @@ public class ConsoleView {
         return this.properties.getProperty(key);
     }
 
-    // motoda pomocnicza do wypisywania błędów
+    // metoda pomocnicza do wypisywania błędów
     public void printError(String line) {
         System.err.print(line);
     }
